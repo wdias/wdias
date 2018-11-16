@@ -1,0 +1,84 @@
+#!/bin/bash
+set -e
+
+pub_helm_delete(){
+  APP=$(basename ${PWD})
+  helm delete $APP --purge
+}
+
+pub_build() {
+  APP=$(basename ${PWD})
+  eval $(minikube docker-env)
+  docker build -t $APP .
+}
+
+pub_helm_install(){
+  APP=$(basename ${PWD})
+  eval $(minikube docker-env)
+  helm install -n ${APP} .
+}
+
+pub_up() {
+  APP=$(basename ${PWD})
+  pub_helm_delete $REPO || true
+  # pub_build
+  pub_helm_install
+  sleep 3
+  pub_logs
+}
+
+pub_helm_test() {
+  APP=$(basename ${PWD})
+  helm install --debug --dry-run -n ${APP} .
+}
+
+get-pod() {
+  REPO=$1
+  NAMESPACE=${2:-}
+  # kubectl jsonpath doesnt support -1 indexing or reverse sort
+  POD=$( kubectl ${NAMESPACE} get pods -l app=${REPO} --sort-by=.metadata.creationTimestamp -o=json | jq -r ".items[-1].metadata.name" )
+  echo $POD
+}
+
+wait-for-pod() {
+  POD=$1
+  echo waiting for pod "${POD}" to enter 'Running'
+  until kubectl get pod ${POD} -o jsonpath="{.status.phase}" | grep -m 1 "Running"; do sleep 1 ; done
+}
+
+pub_logs(){
+  APP=$(basename ${PWD})
+  POD=$(get-pod $APP)
+  wait-for-pod $POD
+  if [ -z "$1" ]
+    then
+    TAIL="--tail 20"
+  else
+    TAIL="--tail $1"
+  fi
+
+  kubectl logs -f $TAIL ${POD} -c ${APP}
+}
+
+pub_exec(){
+  APP=$(basename ${PWD})
+  POD=$(get-pod $APP)
+  echo ${POD}
+  kubectl exec -it ${POD} $@
+}
+
+pub_cmd=$1
+case $pub_cmd in
+  "" | "-h" | "--help")
+    pub_help
+    ;;
+  *)
+    shift
+    pub_${pub_cmd} $@
+    if [ $? = 127 ]; then
+      echo "Error: '$pub_cmd' is not a known command." >&2
+      echo "Run '$ProgName --help' for a list of known commands." >&2
+      exit 1
+    fi
+    ;;
+esac
