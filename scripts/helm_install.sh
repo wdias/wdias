@@ -31,6 +31,13 @@ deploy_app() {
   sleep $SLEEP_TIME
 }
 
+install_db() {
+  APP_PATH="$ROOT_DIR/wdias-helm-charts/$1"
+  cd $APP_PATH
+  echo "Install Database Helm for $(basename ${PWD}) >>>"
+  helm install --name $1 -f values.yaml stable/$2
+}
+
 # Adapter-Extension
 build_app adapter-extension && deploy_app adapter-extension
 # cd ~/wdias/adapter-extension && wdias build && cd ~/wdias/wdias-helm-charts/adapter-extension && wdias up
@@ -69,11 +76,14 @@ build_app extension-validation && deploy_app extension-validation
 
 
 ## Install Databases
-cd ~/wdias/wdias-helm-charts/adapter-extension-mysql && helm install --name adapter-extension-mysql -f values.yaml stable/mysql
+install_db adapter-extension-mysql mysql
+# cd ~/wdias/wdias-helm-charts/adapter-extension-mysql && helm install --name adapter-extension-mysql -f values.yaml stable/mysql
 # kubectl port-forward svc/adapter-extension-mysql 3306
-cd ~/wdias/wdias-helm-charts/adapter-metadata-mysql && helm install --name adapter-metadata-mysql -f values.yaml stable/mysql
+install_db adapter-metadata-mysql mysql
+# cd ~/wdias/wdias-helm-charts/adapter-metadata-mysql && helm install --name adapter-metadata-mysql -f values.yaml stable/mysql
 # kubectl port-forward svc/adapter-metadata-mysql 3306
-cd ~/wdias/wdias-helm-charts/adapter-scalar-influxdb && helm install --name adapter-scalar-influxdb -f values.yaml stable/influxdb
+install_db adapter-scalar-influxdb influxdb
+# cd ~/wdias/wdias-helm-charts/adapter-scalar-influxdb && helm install --name adapter-scalar-influxdb -f values.yaml stable/influxdb
 # kubectl exec -i -t --namespace default $(kubectl get pods --namespace default -l app=adapter-scalar-influxdb -o jsonpath='{.items[0].metadata.name}') /bin/sh
 
 cd $DIR
