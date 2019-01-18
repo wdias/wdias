@@ -8,7 +8,7 @@ minikube config view
 
 kubectl config use-context wdias
 
-minikube start --profile wdias --memory 8192 --cpus 4 --vm-driver=hyperkit
+minikube start --profile wdias --memory 6144 --cpus 3 --vm-driver=hyperkit
 ```
 Issues:
 - Error: configmaps is forbidden: User "system:serviceaccount:kube-system:default" cannot list configmaps in the namespace "kube-system"
