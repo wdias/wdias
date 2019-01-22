@@ -1,6 +1,6 @@
 # !/bin/bash
 
-# ./scripts/helm_install.sh <ROOT_DIR> <1>
+# ./scripts/helm_install.sh <ROOT_DIR> <DEV_MODE=1>
 # E.g. ./scripts/helm_install.sh ~/wdias 1
 
 DIR=$(pwd)

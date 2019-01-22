@@ -3,11 +3,8 @@
 Create a separate minikube instance to run the WDIAS.
 ```
 minikube profile wdias
-# minikube profile was successfully set to minikube
 minikube config view
-
 kubectl config use-context wdias
-
 minikube start --profile wdias --memory 6144 --cpus 3 --vm-driver=hyperkit
 ```
 Issues:
@@ -25,7 +22,6 @@ For admin access: Eg: to install packages.
 
 ```
 minikube stop
-
 minikube profile minikube
 minikube config view
 kubectl config use-context minikube
@@ -48,6 +44,12 @@ minikube delete
 minikube --memory 8192 --cpus 4 start
 ```
 
+After fresh initialization, it's required to install `helm` and enable `ingress`.
+```
+helm init
+sleep 20
+minikube addons enable ingress
+```
 
 # Deploy Particular Service
 
