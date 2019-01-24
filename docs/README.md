@@ -5,8 +5,16 @@ Create a separate minikube instance to run the WDIAS.
 minikube profile wdias
 minikube config view
 kubectl config use-context wdias
-minikube start --profile wdias --memory 6144 --cpus 3 --vm-driver=hyperkit
+minikube config set memory 3072
+minikube config set cpus 2
+minikube start --profile wdias
 ```
+
+Or use creating a new Profile;
+```
+minikube start --profile wdias --memory 3072 --cpus 2 --disk-size 20g
+```
+
 Issues:
 - Error: configmaps is forbidden: User "system:serviceaccount:kube-system:default" cannot list configmaps in the namespace "kube-system"
 
@@ -25,7 +33,14 @@ minikube stop
 minikube profile minikube
 minikube config view
 kubectl config use-context minikube
-minikube start --profile minikube --memory 3072 --cpus 3 --vm-driver=hyperkit
+minikube config set cpus 2
+minikube config set memory 3072
+minikube config set disk-size 12g
+```
+
+Or use creating a new profile;
+```
+minikube start --memory 3072 --cpus 2  --disk-size 20g
 ```
 
 # Use different vm-driver
@@ -34,6 +49,11 @@ minikube start --profile minikube --memory 3072 --cpus 3 --vm-driver=hyperkit
   - As state [here](https://github.com/kubernetes/minikube/blob/master/docs/drivers.md#hyperkit-driver), the Hyperkit driver will eventually replace the existing xhyve driver.
   - [On macOS](https://gist.github.com/inadarei/7c4f4340d65b0cc90d42d6382fb63130#gistcomment-2315322) `brew install docker-machine-driver-hyperkit`
   - `minikube start --vm-driver=hyperkit`
+```
+minikube config view
+kubectl config use-context wdias
+minikube start --profile wdias --memory 3072 --cpus 2 --vm-driver=hyperkit
+```
 
 # Set Minikube resources (memory & cpus)
 - As state in [this discussion](https://github.com/kubernetes/minikube/issues/567), It's possible to change the resources - `minikube start -h`.
@@ -41,7 +61,9 @@ But it's necessary to delete the existing minikube, the memory won't be changed 
 ```
 minikube stop
 minikube delete
-minikube --memory 8192 --cpus 4 start
+minikube --memory 3072 --cpus 2 start
+minikube config set cpus 2
+minikube config set memory 3072
 ```
 
 After fresh initialization, it's required to install `helm` and enable `ingress`.
