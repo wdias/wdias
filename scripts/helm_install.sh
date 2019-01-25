@@ -82,6 +82,8 @@ install_db adapter-extension-mysql mysql
 install_db adapter-metadata-mysql mysql
 # cd ~/wdias/wdias-helm-charts/adapter-metadata-mysql && helm install --name adapter-metadata-mysql -f values.yaml stable/mysql
 # kubectl port-forward svc/adapter-metadata-mysql 3306
+install_db adapter-redis redis
+# cd ~/wdias/wdias-helm-charts/adapter-redis && helm install --name adapter-redis -f values.yaml stable/redis
 install_db adapter-scalar-influxdb influxdb
 # cd ~/wdias/wdias-helm-charts/adapter-scalar-influxdb && helm install --name adapter-scalar-influxdb -f values.yaml stable/influxdb
 # kubectl exec -i -t --namespace default $(kubectl get pods --namespace default -l app=adapter-scalar-influxdb -o jsonpath='{.items[0].metadata.name}') /bin/sh
