@@ -15,7 +15,11 @@ pub_build() {
 pub_helm_install(){
   APP=$(basename ${PWD})
   eval $(minikube docker-env)
-  helm install -n ${APP} .
+  helm install -n ${APP} $(set_dev) .
+}
+
+set_dev() {
+  [[ -n "${DEV}" ]] && echo "--set dev=true" || echo ""
 }
 
 pub_up() {

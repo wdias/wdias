@@ -28,14 +28,15 @@ For admin access: Eg: to install packages.
 
 > kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default
 
-```
+```sh
 minikube stop
 minikube profile minikube
 minikube config view
 kubectl config use-context minikube
-minikube config set cpus 2
-minikube config set memory 3072
-minikube config set disk-size 12g
+# minikube config set cpus 2
+# minikube config set memory 3072
+# minikube config set disk-size 20g
+minikube start
 ```
 
 Or use creating a new profile;
