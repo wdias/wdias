@@ -1,3 +1,10 @@
+# Installation
+- Create a directory with `mkdir ~/wdias && cd ~/wdias`
+- Clone repos `git clone --depth=1 https://github.com/wdias/wdias.git && git clone --depth=1 https://github.com/wdias/wdias-helm-charts.git`
+- Deploy databases `. ~/wdias/scripts/db_setup.sh ~/wdias`
+- Follow instruction to setup the MySQL databases - [wdias-mysql-schema](https://github.com/wdias/wdias-mysql-schema#install-database)
+- Deploy microservices `. ~/wdias/scripts/helm_install.sh ~/wdias`
+
 # Run with Minikube
 
 Create a separate minikube instance to run the WDIAS.

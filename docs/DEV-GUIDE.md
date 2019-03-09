@@ -22,4 +22,9 @@ Or tailing logs can be done with some existing adavanced tools also.
   kubectl get pvc
   kubectl patch pvc db-pv-claim -p '{"metadata":{"finalizers":null}}'
   ```
-  
+
+## Helpers
+```sh
+helm ls | grep 'adapter' | awk '{print $1}' | xargs -o -I {} helm delete --purge {}
+kubectl get pods | grep 'grid' | awk '{print $1}' | xargs -o -I {} kubectl exec -it {} -- /bin/bash
+```
