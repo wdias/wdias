@@ -6,11 +6,11 @@ DIR=$(pwd)
 APP=$1
 CMD=~/wdias/wdias/bin/macos/dev
 
-BUILD_DIR=~/wdias/$APP
+BUILD_DIR=~/wdias/
 cd $BUILD_DIR
-$CMD build
-HELM_DIR=~/wdias/wdias-helm-charts/$APP
+$CMD build ${APP}
+HELM_DIR=~/wdias/wdias-helm-charts
 cd $HELM_DIR
 export DEV=true # Install helm with using the docker image build locally
-$CMD up
+$CMD up ${APP}
 cd $DIR

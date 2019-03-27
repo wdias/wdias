@@ -28,3 +28,5 @@ Or tailing logs can be done with some existing adavanced tools also.
 helm ls | grep 'adapter' | awk '{print $1}' | xargs -o -I {} helm delete --purge {}
 kubectl get pods | grep 'grid' | awk '{print $1}' | xargs -o -I {} kubectl exec -it {} -- /bin/bash
 ```
+- Delete `MatchNodeSelector` pods on Docker for Mac
+`kubectl get pods --all-namespaces | grep 'MatchNodeSelector' | awk {'print $2'} | xargs -o -I {} kubectl delete -n docker pod {}`
