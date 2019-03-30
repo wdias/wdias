@@ -47,41 +47,40 @@ if [ "${CHARTS}" != "" ]; then
     exit 0
 fi
 
-# Adapter-Extension
-build_app adapter-extension && deploy_app adapter-extension
-# cd ~/wdias/adapter-extension && wdias build && cd ~/wdias/wdias-helm-charts/adapter-extension && wdias up
-# Adapter-Metadata
+# Adapter Core
+deploy_app wdias-init
 build_app adapter-metadata && deploy_app adapter-metadata
-# cd ~/wdias/adapter-metadata && wdias build && cd ~/wdias/wdias-helm-charts/adapter-metadata && wdias up
-# Adapter-Scalar
+build_app adapter-query && deploy_app adapter-query
+build_app adapter-status && deploy_app adapter-status
+# Adapter: Scalar, Vector, Grid
 build_app adapter-scalar && deploy_app adapter-scalar
-# cd ~/wdias/adapter-scalar && wdias build && cd ~/wdias/wdias-helm-charts/adapter-scalar && wdias up
-# Extension-Handler
+build_app adapter-vector && deploy_app adapter-vector
+build_app adapter-grid && deploy_app adapter-grid
+# Adapter Extension
+build_app adapter-extension && deploy_app adapter-extension
 build_app extension-handler && deploy_app extension-handler
-# cd ~/wdias/extension-handler && wdias build && cd ~/wdias/wdias-helm-charts/extension-handler && wdias up
+build_app extension-scheduler && deploy_app extension-scheduler
 
 # Import
 build_app import-json-raw && deploy_app import-json-raw
-# cd ~/wdias/import-json-raw && wdias build && cd ~/wdias/wdias-helm-charts/import-json-raw && wdias up
+build_app import-ascii-grid-binary && deploy_app import-ascii-grid-binary
+build_app import-ascii-grid-upload && deploy_app import-ascii-grid-upload
 
 # Export
 build_app export-json-raw && deploy_app export-json-raw
-# cd ~/wdias/export-json-raw && wdias build && cd ~/wdias/wdias-helm-charts/export-json-raw && wdias up
+build_app export-netcdf-binary && deploy_app export-netcdf-binary
 
 # Extension-Transformation
 build_app extension-transformation && deploy_app extension-transformation
-# cd ~/wdias/extension-transformation && wdias build && cd ~/wdias/wdias-helm-charts/extension-transformation && wdias up
-# -> Transformation-Aggregate_Accumulative
 build_app transformation-aggregate-accumulative && deploy_app transformation/transformation-aggregate-accumulative
-# cd ~/wdias/transformation-aggregate-accumulativwdias wdias build && cd ~/wdias/wdias-helm-charts/transformation/transformation-aggregate-accumulative && wdias up
 
 # Extension-Interpolation
 build_app extension-interpolation && deploy_app extension-interpolation
-# cd ~/wdias/extension-interpolation && wdias build && cd ~/wdias/wdias-helm-charts/extension-interpolation && wdias up
+build_app interpolation-serial-linear && deploy_app interpolation/interpolation-serial-linear
 
 # Extension-Validation
 build_app extension-validation && deploy_app extension-validation
-# cd ~/wdias/extension-validation && wdias build && cd ~/wdias/wdias-helm-charts/extension-validation && wdias up
+build_app validation-min-non-missing-values-check && deploy_app validation/validation-min-non-missing-values-check
 
 
 cd $DIR
