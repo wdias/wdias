@@ -1,6 +1,6 @@
 # !/bin/bash
 
-# ./scripts/db_setup.sh <ROOT_DIR> <DB_TO_INSTALL>>
+# ./scripts/db_setup.sh <ROOT_DIR> <DB_TO_INSTALL...>
 # E.g. ./scripts/db_setup.sh ~/wdias adapter-extension-mysql adapter-redis
 
 DIR=$(pwd)

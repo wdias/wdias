@@ -1,13 +1,18 @@
 # !/bin/bash
 
-# ./scripts/helm_install.sh <ROOT_DIR> <DEV_MODE=1>
+# ./scripts/helm_install.sh <ROOT_DIR> <DEV_MODE=1> <CHART_TO_INSTALL...>
 # E.g. ./scripts/helm_install.sh ~/wdias 1
+# E.g. ./scripts/helm_install.sh ~/wdias 0 transformation/transformation-aggregate-accumulative
 
 DIR=$(pwd)
 ROOT_DIR=${1-$DIR}
+shift
+DEV_MODE=${2-0}
+shift
+CHARTS=$@
+
 echo "Set ROOT_DIR=$ROOT_DIR"
 echo "Make sure wdias and wdias-helm-charts avaiable within $ROOT_DIR"
-DEV_MODE=${2-0}
 echo "Dev mode: ${DEV_MODE}"
 CMD="$ROOT_DIR/wdias/bin/macos/dev"
 SLEEP_TIME=1
@@ -27,11 +32,20 @@ deploy_app() {
   if [ "${DEV_MODE}" == "1" ]; then
     export DEV=true # Install helm with using the docker image build locally
   fi
-  ${CMD} helm_delete ${APP_PATH}
+  ${CMD} helm_delete ${APP_PATH} || true
   $CMD helm_install ${APP_PATH}
   echo "Waiting for $SLEEP_TIME ..."
   sleep $SLEEP_TIME
 }
+
+if [ "${CHARTS}" != "" ]; then
+    for var in "$@"
+    do
+      chart_name=$(echo ${var} | awk '{split($0,a,"-"); print a[length(a)]}')
+      build_app ${chart_name} && deploy_app ${var}
+    done
+    exit 0
+fi
 
 # Adapter-Extension
 build_app adapter-extension && deploy_app adapter-extension
