@@ -7,7 +7,7 @@
 DIR=$(pwd)
 ROOT_DIR=${1-$DIR}
 shift
-DEV_MODE=${2-0}
+DEV_MODE=${1-0}
 shift
 CHARTS=$@
 
@@ -22,7 +22,7 @@ build_app() {
     return 0
   fi
   APP_PATH="$ROOT_DIR/$1"
-  echo "Building Docker Image $(basename ${PWD}) >>>"
+  echo "Building Docker Image $(basename ${APP_PATH}) >>>"
   $CMD build ${APP_PATH}
 }
 
@@ -41,7 +41,7 @@ deploy_app() {
 if [ "${CHARTS}" != "" ]; then
     for var in "$@"
     do
-      chart_name=$(echo ${var} | awk '{split($0,a,"-"); print a[length(a)]}')
+      chart_name=$(echo ${var} | awk '{split($0,a,"/"); print a[length(a)]}')
       build_app ${chart_name} && deploy_app ${var}
     done
     exit 0
