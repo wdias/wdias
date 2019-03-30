@@ -24,9 +24,27 @@ Or tailing logs can be done with some existing adavanced tools also.
   ```
 
 ## Helpers
-```sh
-helm ls | grep 'adapter' | awk '{print $1}' | xargs -o -I {} helm delete --purge {}
-kubectl get pods | grep 'grid' | awk '{print $1}' | xargs -o -I {} kubectl exec -it {} -- /bin/bash
-```
+- Helm delete all the charts match given keyword (e.g. delete all `adapter`)
+`helm ls | grep 'adapter' | awk '{print $1}' | xargs -o -I {} helm delete --purge {}`
+- Attach to running container/pod
+`kubectl get pods | grep 'grid' | awk '{print $1}' | xargs -o -I {} kubectl exec -it {} -- /bin/bash`
 - Delete `MatchNodeSelector` pods on Docker for Mac
 `kubectl get pods --all-namespaces | grep 'MatchNodeSelector' | awk {'print $2'} | xargs -o -I {} kubectl delete -n docker pod {}`
+- Disable requested resources and limits
+```sh
+bash ./scripts/helpers.sh resource_request ~/wdias/wdias-helm-charts 0
+bash ./scripts/helpers.sh resource_request ~/wdias/wdias-helm-charts 0 values
+bash ./scripts/helpers.sh resource_limit ~/wdias/wdias-helm-charts 0
+bash ./scripts/helpers.sh resource_limit ~/wdias/wdias-helm-charts 0 values
+```
+- Enable requested resources and limits
+```sh
+bash ./scripts/helpers.sh resource_request ~/wdias/wdias-helm-charts 1
+bash ./scripts/helpers.sh resource_request ~/wdias/wdias-helm-charts 1 values
+bash ./scripts/helpers.sh resource_limit ~/wdias/wdias-helm-charts 1
+bash ./scripts/helpers.sh resource_limit ~/wdias/wdias-helm-charts 1 values
+```
+- Remove all the databases
+`<./groups/databases.txt | xargs  -n1  -I {} helm del --purge {}`
+- Change the domain
+`egrep -lir 'wdias.com' . | grep '.yaml' | xargs -o -I {} sed -i '' 's/wdias.com/mydomain.com/g' {}`

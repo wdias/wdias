@@ -81,10 +81,10 @@ pub_exec() {
 
 pub_help() {
   echo "
-dev helm_install <HELM_DIR_PATH>  - Install Helm into the K8s
-dev helm_delete <HELM_DIR_PATH>   - Remove Helm installation from the K8s
-dev build <REPO_PATH>             - Path to repo with Dockerfile
-dev up <HELM_DIR_PATH>            - Remove old Helm installation and install new. Then logs the container
+$ProgName helm_install <HELM_DIR_PATH>  - Install Helm into the K8s
+$ProgName helm_delete <HELM_DIR_PATH>   - Remove Helm installation from the K8s
+$ProgName build <REPO_PATH>             - Path to repo with Dockerfile
+$ProgName up <HELM_DIR_PATH>            - Remove old Helm installation and install new. Then logs the container
   "
 }
 

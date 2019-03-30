@@ -1,0 +1,6 @@
+adapter-extension-mysql
+adapter-metadata-mysql
+adapter-redis
+adapter-query-mongodb
+adapter-scalar-influxdb
+adapter-vector-influxdb

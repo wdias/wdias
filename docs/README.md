@@ -4,8 +4,10 @@
 - Deploy databases `bash ~/wdias/wdias/scripts/db_setup.sh ~/wdias`
 - Follow instruction to setup the MySQL databases - [wdias-mysql-schema](https://github.com/wdias/wdias-mysql-schema#install-database)
   - Clone repos `git clone --depth=1 https://github.com/wdias/wdias-mysql-schema.git`
-  - `bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-metadata-mysql metadata wdias` (Enter root password and database password set in the Helm Chart)
-  - `bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-extension-mysql extension wdias` (Enter root password and database password set in the Helm Chart)
+  - `bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-metadata-mysql metadata wdias`
+  - INFO: Enter root password and database password set in the Helm Chart
+  - `bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-extension-mysql extension wdias`
+  - INFO: Enter root password and database password set in the Helm Chart
 - Deploy microservices `bash ~/wdias/wdias/scripts/helm_install.sh ~/wdias`
   - Dev mode: `bash ~/wdias/wdias/scripts/helm_install.sh ~/wdias 1`
 
