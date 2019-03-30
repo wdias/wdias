@@ -7,26 +7,28 @@ DIR=$(pwd)
 ROOT_DIR=${1-$DIR}
 echo "Set ROOT_DIR=$ROOT_DIR"
 echo "Make sure wdias and wdias-helm-charts avaiable within $ROOT_DIR"
-DEV=${2-0}
-echo "Dev mode: $DEV"
+DEV_MODE=${2-0}
+echo "Dev mode: ${DEV_MODE}"
 CMD="$ROOT_DIR/wdias/bin/macos/dev"
-SLEEP_TIME=5
+SLEEP_TIME=1
 
 build_app() {
-  if [ "$DEV" != "1" ]; then
+  if [ "${DEV_MODE}" != "1" ]; then
     return 0
   fi
   APP_PATH="$ROOT_DIR/$1"
-  cd $APP_PATH
   echo "Building Docker Image $(basename ${PWD}) >>>"
-  $CMD build
+  $CMD build ${APP_PATH}
 }
 
 deploy_app() {
   APP_PATH="$ROOT_DIR/wdias-helm-charts/$1"
-  cd $APP_PATH
   echo "Deploy Helm for $(basename ${PWD}) >>>"
-  nohup $CMD up &
+  if [ "${DEV_MODE}" == "1" ]; then
+    export DEV=true # Install helm with using the docker image build locally
+  fi
+  ${CMD} helm_delete ${APP_PATH}
+  $CMD helm_install ${APP_PATH}
   echo "Waiting for $SLEEP_TIME ..."
   sleep $SLEEP_TIME
 }
