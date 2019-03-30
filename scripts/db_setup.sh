@@ -53,5 +53,8 @@ install_db adapter-query-mongodb mongodb
 install_db adapter-scalar-influxdb influxdb
 # cd ~/wdias/wdias-helm-charts/adapter-scalar-influxdb && helm install --name adapter-scalar-influxdb -f values.yaml stable/influxdb
 # kubectl exec -i -t --namespace default $(kubectl get pods --namespace default -l app=adapter-scalar-influxdb -o jsonpath='{.items[0].metadata.name}') /bin/sh
+install_db adapter-vector-influxdb influxdb
+# cd ~/wdias/wdias-helm-charts/adapter-vector-influxdb && helm install --name adapter-vector-influxdb -f values.yaml stable/influxdb
+# kubectl exec -i -t --namespace default $(kubectl get pods --namespace default -l app=adapter-vector-influxdb -o jsonpath='{.items[0].metadata.name}') /bin/sh
 
 cd $DIR
