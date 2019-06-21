@@ -1,0 +1,3 @@
+metrics-server
+wdias-data-collector
+wdias-performance-test

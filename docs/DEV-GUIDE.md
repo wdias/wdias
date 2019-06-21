@@ -46,5 +46,7 @@ bash ./scripts/helpers.sh resource_limit ~/wdias/wdias-helm-charts 1 values
 ```
 - Remove all the databases
 `<./groups/databases.txt | xargs  -n1  -I {} helm del --purge {}`
+- Remove all the Helm Charts
+`find ./groups -name '*.txt' | xargs -o -I {} cat {} | xargs  -n1 -o -I {} helm del --purge {}`
 - Change the domain
 `egrep -lir 'wdias.com' . | grep '.yaml' | xargs -o -I {} sed -i '' 's/wdias.com/mydomain.com/g' {}`

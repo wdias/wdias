@@ -1,0 +1,6 @@
+adapter-metadata
+adapter-status
+adapter-query
+adapter-scalar
+adapter-vector
+adapter-grid
