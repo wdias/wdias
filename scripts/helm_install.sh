@@ -32,7 +32,9 @@ deploy_app() {
   if [ "${DEV_MODE}" == "1" ]; then
     export DEV=true # Install helm with using the docker image build locally
   fi
+  echo "${CMD} helm_delete ${APP_PATH}"
   ${CMD} helm_delete ${APP_PATH} || true
+  echo "$CMD helm_install ${APP_PATH}"
   $CMD helm_install ${APP_PATH}
   echo "Waiting for $SLEEP_TIME ..."
   sleep $SLEEP_TIME

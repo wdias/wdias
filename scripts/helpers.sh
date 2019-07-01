@@ -3,7 +3,7 @@ set -e
 
 
 helper_resource_request() {
-    # usage: $ProgName request_resource <DIR> <ENABLE>
+    # usage: $ProgName request_resource <SEARCH_DIR> <ENABLE>
     ENABLE=${2-1}
     echo "ENABLE: ${ENABLE}"
     SEARCH="#"
@@ -24,7 +24,7 @@ helper_resource_request() {
 }
 
 helper_resource_limit() {
-    # usage: $ProgName request_limit <DIR> <ENABLE>
+    # usage: $ProgName request_limit <SEARCH_DIR> <ENABLE>
     ENABLE=${2-1}
     echo "ENABLE: ${ENABLE}"
     SEARCH="#"
@@ -46,7 +46,17 @@ helper_resource_limit() {
 
 helper_help() {
   echo "
-$ProgName helm_install <HELM_DIR_PATH>  - Install Helm into the K8s
+$ProgName resource_request <SEARCH_DIR> <ENABLE> <FILE_NAME.yaml|deployment.yaml>
+  Disable or Enable resource request defined.
+  - SEARCH_DIR: Directory need to do the search
+  - ENABLE: 1 | 0 comment or uncomment them
+  - FILE_NAME: File name to be search on
+
+$ProgName resource_limit <SEARCH_DIR> <ENABLE> <FILE_NAME.yaml>
+  Disable or Enable resource limit defined.
+  - SEARCH_DIR: Directory need to do the search
+  - ENABLE: 1 | 0 comment or uncomment them
+  - FILE_NAME: File name to be search on
   "
 }
 

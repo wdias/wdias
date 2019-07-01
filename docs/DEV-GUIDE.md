@@ -50,3 +50,14 @@ bash ./scripts/helpers.sh resource_limit ~/wdias/wdias-helm-charts 1 values
 `find ./groups -name '*.txt' | xargs -o -I {} cat {} | xargs  -n1 -o -I {} helm del --purge {}`
 - Change the domain
 `egrep -lir 'wdias.com' . | grep '.yaml' | xargs -o -I {} sed -i '' 's/wdias.com/mydomain.com/g' {}`
+- Enable or Disable resources limits defined
+`wdias/scripts/helpers.sh resource_request ~/wdias/wdias-helm-charts 0`
+
+## Setup Dev
+```sh
+bash ~/wdias/wdias/scripts/db_setup.sh ~/wdias
+cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-metadata-mysql metadata wdias
+cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-extension-mysql extension wdias
+bash ~/wdias/wdias/scripts/helm_install.sh ~/wdias 1
+helm install --name metrics-server --namespace=kube-system stable/metrics-server -f ~/wdias/wdias-helm-charts/metrics-server/values.yaml
+```
