@@ -1,3 +1,8 @@
+# WDIAS
+This documentation is about installing the WDIAS on a Kubernetes cluster and helper guide for run locally.
+
+NOTE: If you are new to Kubernetes, [Introduction to Kubernetes](https://www.edx.org/course/introduction-to-kubernetes) course will give you better overview about Kubernetes and using it.
+
 # Installation
 - Create a directory with `mkdir ~/wdias && cd ~/wdias`
 - Clone repos `git clone --depth=1 https://github.com/wdias/wdias.git && git clone --depth=1 https://github.com/wdias/wdias-helm-charts.git`
