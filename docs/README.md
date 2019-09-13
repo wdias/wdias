@@ -8,6 +8,7 @@ NOTE: If you are new to Kubernetes, [Introduction to Kubernetes](https://www.edx
 - Clone repos `git clone --depth=1 https://github.com/wdias/wdias.git && git clone --depth=1 https://github.com/wdias/wdias-helm-charts.git`
 - Deploy databases `bash ~/wdias/wdias/scripts/db_setup.sh ~/wdias`
 - Follow instruction to setup the MySQL databases - [wdias-mysql-schema](https://github.com/wdias/wdias-mysql-schema#install-database)
+  (Required `mysql-client` installed.)
   - Clone repos `git clone --depth=1 https://github.com/wdias/wdias-mysql-schema.git`
   - `cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-metadata-mysql metadata wdias`
   - INFO: Enter root password and database password set in the Helm Chart

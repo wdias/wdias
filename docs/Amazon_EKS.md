@@ -38,7 +38,7 @@ If you're using a Virtual Envirnment, then don't need to add `--user` option whi
 #### Install eksctl
 - `brew tap weaveworks/tap`
 - `brew install weaveworks/tap/eksctl`
-- Check `eksctl version` & `kubectl version --short --client` (You must use a `kubectl` version that is within [one minor version difference](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html) of your Amazon EKS cluster control plane.)
+- Check `eksctl version && kubectl version --short --client` (You must use a `kubectl` version that is within [one minor version difference](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html) of your Amazon EKS cluster control plane.)
 
 #### Create Your Amazon EKS Cluster and Worker Nodes
 1. More info `eksctl create cluster --help` or [eksctl docs](https://eksctl.io/usage/creating-and-managing-clusters/)
@@ -88,6 +88,9 @@ Before you can install Helm charts on your Amazon EKS cluster, you must configur
     ```
 
 ### To run helm and tiller locally
+- Install Helm on MacOS - `brew install kubernetes-helm`
+- Linux - Downlaod from https://helm.sh/docs/install/#from-canary-builds and extract binaries
+
 Repeat when you want to use Helm with the cluster
 1. `kubectl create namespace tiller`
 For the following steps, you need a terminal window for the `tiller server` and another window for the `helm client`.
@@ -102,3 +105,18 @@ For the following steps, you need a terminal window for the `tiller server` and 
 6. Verify: `helm repo update`
 7. Run Helm chart commands.
 8. When you're finished, close your helm client and tiller server terminal windows. Repeat this procedure when you want to use helm with your cluster.
+
+## Install metrics-server
+- Install `curl` and `jq`
+- Run following command;
+```
+DOWNLOAD_URL=$(curl --silent "https://api.github.com/repos/kubernetes-incubator/metrics-server/releases/latest" | jq -r .tarball_url)
+DOWNLOAD_VERSION=$(grep -o '[^/v]*$' <<< $DOWNLOAD_URL)
+curl -Ls $DOWNLOAD_URL -o metrics-server-$DOWNLOAD_VERSION.tar.gz
+mkdir metrics-server-$DOWNLOAD_VERSION
+tar -xzf metrics-server-$DOWNLOAD_VERSION.tar.gz --directory metrics-server-$DOWNLOAD_VERSION --strip-components 1
+kubectl apply -f metrics-server-$DOWNLOAD_VERSION/deploy/1.8+/
+```
+
+## Ingress Setup
+[EKS Workshop](https://eksworkshop.com)
