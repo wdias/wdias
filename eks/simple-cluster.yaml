@@ -8,7 +8,7 @@ metadata:
 nodeGroups:
   - name: ng-1
     instanceType: m5.large
-    desiredCapacity: 5
+    desiredCapacity: 1
     ssh:
       allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
 cloudWatch:
