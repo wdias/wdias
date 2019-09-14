@@ -106,6 +106,17 @@ For the following steps, you need a terminal window for the `tiller server` and 
 7. Run Helm chart commands.
 8. When you're finished, close your helm client and tiller server terminal windows. Repeat this procedure when you want to use helm with your cluster.
 
+Direct install tiller on the cluster.
+```
+helm init
+kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=default:default
+# kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default
+helm reset --force
+```
+Some reference:
+- https://github.com/helm/helm/issues/3130#issuecomment-407866634. Not give above directly.
+- https://github.com/helm/helm/blob/master/docs/rbac.md#example-deploy-tiller-in-a-namespace-restricted-to-deploying-resources-in-another-namespace
+
 ## Install metrics-server
 - Install `curl` and `jq`
 - Run following command;

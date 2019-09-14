@@ -23,6 +23,7 @@ install_db() {
         APP_PATH="$ROOT_DIR/wdias-helm-charts/$1"
         cd $APP_PATH
         echo "Install Database Helm for $(basename ${PWD}) >>>"
+        echo "helm install --name $1 -f values.yaml stable/$2"
         helm install --name $1 -f values.yaml stable/$2
         sleep $SLEEP_TIME
     else
