@@ -106,6 +106,20 @@ For the following steps, you need a terminal window for the `tiller server` and 
 7. Run Helm chart commands.
 8. When you're finished, close your helm client and tiller server terminal windows. Repeat this procedure when you want to use helm with your cluster.
 
+**Summary**:
+- On server terminal
+```sh
+export TILLER_NAMESPACE=tiller
+tiller -listen=localhost:44134 -storage=secret -logtostderr
+```
+- on client terminal
+```sh
+export HELM_HOST=:44134
+helm init --client-only
+helm repo update
+```
+
+
 Direct install tiller on the cluster.
 ```
 helm init
@@ -131,3 +145,15 @@ kubectl apply -f metrics-server-$DOWNLOAD_VERSION/deploy/1.8+/
 
 ## Ingress Setup
 [EKS Workshop](https://eksworkshop.com)
+
+## Troubleshooting
+1. Unable to create new stack due to previous stack failed
+  - `creating CloudFormation stack "eksctl-simple-cluster-cluster": AlreadyExistsException: Stack [eksctl-simple-cluster-cluster] already exists`
+  - `unable to describe cluster control plane: unable to describe cluster control plane: ResourceNotFoundException: No cluster found for name:`
+  - Solution: https://aws.amazon.com/premiumsupport/knowledge-center/ecs-cluster-delete-failure-stack/
+
+2. InfluxDB installation issue
+  - Error: run: write-buffer-size must be greater than 0. To generate a valid configuration file run `influxd config > influxdb.generated.conf`
+  - As mentioned here, it's due to [Helm code base issue](https://github.com/helm/charts/issues/18418#issuecomment-547846211)
+  - In order to fix the issue, install Helm version greater than 2.15.1. E.g. https://github.com/helm/helm/releases/tag/v2.16.1
+  - `curl --location "https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz" | tar xz -C bin`
