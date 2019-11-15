@@ -54,6 +54,8 @@ bash ./scripts/helpers.sh resource_limit ~/wdias/wdias-helm-charts 1 values
 `egrep -lir 'wdias.com' . | grep '.yaml' | xargs -o -I {} sed -i '' 's/wdias.com/mydomain.com/g' {}` # Ubuntu: without ''
 - Enable or Disable resources limits defined
 `wdias/scripts/helpers.sh resource_request ~/wdias/wdias-helm-charts 0`
+- Run a command in regualr interval
+`watch -n5 -x kubectl top pods`
 
 ## Setup Dev
 ```sh

@@ -50,7 +50,7 @@ if [ "${CHARTS}" != "" ]; then
 fi
 
 # Adapter Core
-deploy_app wdias-init
+# deploy_app wdias-init
 build_app adapter-metadata && deploy_app adapter-metadata
 build_app adapter-query && deploy_app adapter-query
 build_app adapter-status && deploy_app adapter-status
