@@ -63,10 +63,18 @@ cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install
 bash ~/wdias/wdias/scripts/helm_install.sh ~/wdias 1
 helm install --name metrics-server --namespace=kube-system stable/metrics-server -f ~/wdias/wdias-helm-charts/metrics-server/values.yaml
 ```
+Just Grid
+```sh
+bash ~/wdias/wdias/scripts/db_setup.sh ~/wdias adapter-metadata-mysql adapter-redis adapter-query-mongodb
+cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-metadata-mysql metadata wdias
+bash ~/wdias/wdias/scripts/helm_install.sh ~/wdias 1
+helm install --name metrics-server --namespace=kube-system stable/metrics-server -f ~/wdias/wdias-helm-charts/metrics-server/values.yaml
+```
 ## Setup Prod
 ```sh
-bash ~/wdias/wdias/scripts/db_setup.sh ~/wdias
-cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-metadata-mysql metadata wdias
-cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-extension-mysql extension wdias
+bash ~/wdias/wdias/scripts/db_setup.sh ~/wdias && \
+cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-metadata-mysql metadata wdias && \
+cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-extension-mysql extension wdias && \
 bash ~/wdias/wdias/scripts/helm_install.sh ~/wdias
+helm install --name metrics-server --namespace=kube-system stable/metrics-server -f ~/wdias/wdias-helm-charts/metrics-server/values.yaml
 ```
