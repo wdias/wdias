@@ -1,5 +1,10 @@
 # Developer Guide
 
+## Helm 3
+After upgrading to the Helm 3 (from Helm 2), there are lots of breaking changes. In Helm 3, it need to add helm chart repositories, and it's possible to host own helm charts.
+In order to use existing Helm charts that used for Helm to [need to add following](https://stackoverflow.com/a/57970816/1461060);
+`helm repo add stable https://kubernetes-charts.storage.googleapis.com/`
+
 ## Tailing Logs of containers
 Get the list of running pods with `kubectl get pods`.
 ```

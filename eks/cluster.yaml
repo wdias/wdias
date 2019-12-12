@@ -4,11 +4,11 @@ kind: ClusterConfig
 
 metadata:
   name: wdias-cluster
-  region: us-east-1
+  region: us-east-2
 
 nodeGroups:
   - name: ng-1
-    instanceType: c5.large
+    instanceType: c5.xlarge
     desiredCapacity: 1
     volumeSize: 10
     volumeType: gp2
