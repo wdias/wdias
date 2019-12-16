@@ -13,13 +13,15 @@ nodeGroups:
     volumeSize: 10
     volumeType: gp2
     labels:
-      datatype: grid
+      datatype: scalar
     ssh:
       allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
   - name: ng-2
     instanceType: c5.xlarge
     desiredCapacity: 1
+    volumeSize: 10
+    volumeType: gp2
     labels:
-      datatype: scalar
+      datatype: grid
     ssh:
       allow: true
