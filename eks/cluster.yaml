@@ -9,7 +9,9 @@ metadata:
 nodeGroups:
   - name: ng-1
     instanceType: c5.xlarge
-    desiredCapacity: 1
+    # desiredCapacity: 1
+    minSize: 1
+    maxSize: 2
     volumeSize: 10
     volumeType: gp2
     labels:
@@ -18,7 +20,9 @@ nodeGroups:
       allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
   - name: ng-2
     instanceType: c5.xlarge
-    desiredCapacity: 1
+    # desiredCapacity: 1
+    minSize: 2
+    maxSize: 3
     volumeSize: 10
     volumeType: gp2
     labels:
