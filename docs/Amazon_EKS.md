@@ -62,9 +62,9 @@ Or using config yaml file. (Example config files [/examples](https://github.com/
 3. [Delete EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/delete-cluster.html)
     1. `kubectl get svc --all-namespaces`
     2. `kubectl delete svc <service-name>` Delete any services that have an associated EXTERNAL-IP value.
-    3. `eksctl delete cluster --name <cluster-name`
+    3. `eksctl delete cluster --wait --name <cluster-name`
     Or if you used config file
-    `eksctl delete cluster -f eks/simple-cluster.yaml`
+    `eksctl delete cluster --wait -f eks/simple-cluster.yaml`
 
 ## Worker Nodes
 See more details on [Managing nodegroups](https://eksctl.io/usage/managing-nodegroups/).
@@ -74,6 +74,30 @@ Details on [Amazon Instance Types](https://aws.amazon.com/ec2/instance-types/)
 More nodegroups:
 - `eksctl create cluster -f eks/simple-cluster.yaml`
 - `eksctl create cluster -f eks/spot-cluster.yaml`
+
+### Managing nodegroups helpers
+- Listing nodegroups
+```bash
+eksctl get nodegroup --cluster=wdias-cluster
+eksctl get nodegroup --cluster=wdias-cluster --name=ng-core
+```
+- Scaling nodegroup
+```bash
+eksctl scale nodegroup --cluster=wdias-cluster --nodes=<desiredCount> --name=ng-core
+```
+- Add new nodegroup
+```
+eksctl delete nodegroup -f eks/wdias-cluster.yaml --include=ng-grid,ng-test
+```
+- Delete nodegrups
+```
+eksctl delete nodegroup --cluster=wdias-cluster --name=ng-core
+eksctl delete nodegroup -f eks/wdias-cluster.yaml --include=ng-grid,ng-test --approve
+```
+- Update nodegroup labels
+```
+kubectl label nodes -l alpha.eksctl.io/nodegroup-name=ng-1 new-label=foo
+```
 
 ## Using Helm with Amazon EKS
 Setup details [Helm with EKS](https://docs.aws.amazon.com/eks/latest/userguide/helm.html).
@@ -109,14 +133,14 @@ For the following steps, you need a terminal window for the `tiller server` and 
 **Summary**:
 - On server terminal
 ```sh
-kubectl create namespace tiller
-export TILLER_NAMESPACE=tiller
+kubectl create namespace tiller && \
+export TILLER_NAMESPACE=tiller && \
 tiller -listen=localhost:44134 -storage=secret -logtostderr
 ```
 - on client terminal
 ```sh
-export HELM_HOST=:44134
-helm init --client-only
+export HELM_HOST=:44134 && \
+helm init --client-only && \
 helm repo update
 ```
 

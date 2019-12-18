@@ -7,14 +7,14 @@ metadata:
   region: us-east-2
 
 nodeGroups:
-  - name: ng-core
-    instanceType: c5.2xlarge
+  - name: ng-grid
+    instanceType: c5.4xlarge
     desiredCapacity: 1
     # minSize: 1
     # maxSize: 2
-    volumeSize: 20
+    volumeSize: 50
     volumeType: gp2
     labels:
-      module: core
+      datatype: grid
     ssh:
-      allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
+      allow: true

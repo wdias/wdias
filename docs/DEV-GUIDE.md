@@ -61,6 +61,8 @@ bash ./scripts/helpers.sh resource_limit ~/wdias/wdias-helm-charts 1 values
 `wdias/scripts/helpers.sh resource_request ~/wdias/wdias-helm-charts 0`
 - Run a command in regualr interval
 `watch -n5 -x kubectl top pods`
+- Delete all evicted pods manually after an incident
+`kubectl get pods --all-namespaces -o json | jq '.items[] | select(.status.reason!=null) | select(.status.reason | contains("Evicted")) | "kubectl delete pods \(.metadata.name) -n \(.metadata.namespace)"' | xargs -n 1 bash -c`
 
 ## Setup Dev
 ```sh
@@ -84,4 +86,5 @@ cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install
 cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-extension-mysql extension wdias && \
 bash ~/wdias/wdias/scripts/helm_install.sh ~/wdias
 helm install --name metrics-server --namespace=kube-system stable/metrics-server -f ~/wdias/wdias-helm-charts/metrics-server/values.yaml
+wdias helm_install ~/wdias/wdias-performance-test/helm/wdias-performance-test
 ```
