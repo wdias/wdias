@@ -78,26 +78,30 @@ More nodegroups:
 ### Managing nodegroups helpers
 - Listing nodegroups
 ```bash
-eksctl get nodegroup --cluster=wdias-cluster
-eksctl get nodegroup --cluster=wdias-cluster --name=ng-core
+eksctl get nodegroup --cluster=wdias-cluster -r us-east-2
+eksctl get nodegroup --cluster=wdias-cluster -r us-east-2 --name=ng-core
 ```
 - Scaling nodegroup
 ```bash
-eksctl scale nodegroup --cluster=wdias-cluster --nodes=<desiredCount> --name=ng-core
+eksctl scale nodegroup --cluster=wdias-cluster -r us-east-2  --nodes=<desiredCount> --name=ng-core
 ```
 - Add new nodegroup
 ```
-eksctl delete nodegroup -f eks/wdias-cluster.yaml --include=ng-grid,ng-test
+eksctl create nodegroup -f eks/wdias-cluster.yaml -r us-east-2 --include=ng-grid,ng-test
 ```
 - Delete nodegrups
 ```
-eksctl delete nodegroup --cluster=wdias-cluster --name=ng-core
+eksctl delete nodegroup --cluster=wdias-cluster -r us-east-2 --name=ng-core
 eksctl delete nodegroup -f eks/wdias-cluster.yaml --include=ng-grid,ng-test --approve
 ```
 - Update nodegroup labels
 ```
 kubectl label nodes -l alpha.eksctl.io/nodegroup-name=ng-1 new-label=foo
+(-) eksctl set labels --cluster managed-cluster --nodegroup managed-ng-1 --labels kubernetes.io/managed-by=eks,kubernetes.io/role=worker # https://eksctl.io/usage/eks-managed-nodegroups/#managing-labels
 ```
+- Node volume types: gp2, io1
+  - Types: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html
+  - Pricing: https://aws.amazon.com/ebs/pricing/
 
 ## Using Helm with Amazon EKS
 Setup details [Helm with EKS](https://docs.aws.amazon.com/eks/latest/userguide/helm.html).

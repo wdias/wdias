@@ -18,3 +18,14 @@ nodeGroups:
       datatype: grid
     ssh:
       allow: true
+  - name: ng-test
+    instanceType: c5.xlarge
+    desiredCapacity: 1
+    # minSize: 1
+    # maxSize: 2
+    volumeSize: 5
+    # volumeType: gp2
+    labels:
+      module: test
+    ssh:
+      allow: true
