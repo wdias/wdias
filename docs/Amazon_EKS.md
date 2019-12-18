@@ -87,7 +87,7 @@ eksctl scale nodegroup --cluster=wdias-cluster -r us-east-2  --nodes=<desiredCou
 ```
 - Add new nodegroup
 ```
-eksctl create nodegroup -f eks/wdias-cluster.yaml -r us-east-2 --include=ng-grid,ng-test
+eksctl create nodegroup -f eks/wdias-cluster.yaml --include=ng-grid,ng-test
 ```
 - Delete nodegrups
 ```
