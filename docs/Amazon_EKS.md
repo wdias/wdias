@@ -54,7 +54,7 @@ eksctl create cluster \
 --node-ami auto
 ```
 Or using config yaml file. (Example config files [/examples](https://github.com/weaveworks/eksctl/tree/master/examples) )
-`eksctl create cluster -f eks/simple-cluster.yaml`
+`eksctl create cluster -f eks/cluster.yaml`
 
 2. Cluster provisioning usually takes between 10 and 15 minutes.
     - Check `kubectl get svc`
@@ -64,7 +64,7 @@ Or using config yaml file. (Example config files [/examples](https://github.com/
     2. `kubectl delete svc <service-name>` Delete any services that have an associated EXTERNAL-IP value.
     3. `eksctl delete cluster --wait --name <cluster-name`
     Or if you used config file
-    `eksctl delete cluster --wait -f eks/simple-cluster.yaml`
+    `eksctl delete cluster --wait -f eks/cluster.yaml`
 
 ## Worker Nodes
 See more details on [Managing nodegroups](https://eksctl.io/usage/managing-nodegroups/).
@@ -87,7 +87,7 @@ eksctl scale nodegroup --cluster=wdias-cluster -r us-east-2  --nodes=<desiredCou
 ```
 - Add new nodegroup
 ```
-eksctl create nodegroup -f eks/wdias-cluster.yaml --include='ng-grid,ng-test'
+eksctl create nodegroup -f eks/wdias-cluster.yaml --include='ng-test*' --exclude='ng-grid*'
 ```
 - Delete nodegrups
 ```

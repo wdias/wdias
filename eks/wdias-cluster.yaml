@@ -15,7 +15,7 @@ nodeGroups:
     volumeSize: 50
     volumeType: gp2
     labels:
-      datatype: grid
+      module: grid
     ssh:
       allow: true
   - name: ng-test
