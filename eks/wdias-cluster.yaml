@@ -7,6 +7,17 @@ metadata:
   region: us-east-2
 
 nodeGroups:
+  - name: ng-core
+    instanceType: c5.2xlarge
+    desiredCapacity: 2
+    # minSize: 1
+    # maxSize: 2
+    volumeSize: 20
+    volumeType: gp2
+    labels:
+      module: core
+    ssh:
+      allow: true
   - name: ng-grid
     instanceType: c5.4xlarge
     desiredCapacity: 1

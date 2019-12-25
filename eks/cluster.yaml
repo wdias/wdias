@@ -8,13 +8,11 @@ metadata:
 
 nodeGroups:
   - name: ng-core
-    instanceType: c5.2xlarge
+    instanceType: c5.large
     desiredCapacity: 1
-    # minSize: 1
-    # maxSize: 2
-    volumeSize: 20
+    volumeSize: 5
     volumeType: gp2
     labels:
-      module: core
+      module: common
     ssh:
       allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
