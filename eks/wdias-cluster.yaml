@@ -12,10 +12,21 @@ nodeGroups:
     desiredCapacity: 2
     # minSize: 1
     # maxSize: 2
-    volumeSize: 20
+    volumeSize: 10
     volumeType: gp2
     labels:
       module: core
+    ssh:
+      allow: true
+  - name: ng-scalar
+    instanceType: c5.4xlarge
+    desiredCapacity: 1
+    # minSize: 1
+    # maxSize: 2
+    volumeSize: 20
+    volumeType: gp2
+    labels:
+      module: scalar
     ssh:
       allow: true
   - name: ng-grid
@@ -30,8 +41,8 @@ nodeGroups:
     ssh:
       allow: true
   - name: ng-test
-    instanceType: c5.xlarge
-    desiredCapacity: 1
+    instanceType: c5.2xlarge
+    desiredCapacity: 2
     # minSize: 1
     # maxSize: 2
     volumeSize: 5

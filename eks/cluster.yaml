@@ -7,7 +7,7 @@ metadata:
   region: us-east-2
 
 nodeGroups:
-  - name: ng-core
+  - name: ng-common
     instanceType: c5.large
     desiredCapacity: 1
     volumeSize: 5
