@@ -9,7 +9,7 @@ metadata:
 nodeGroups:
   - name: ng-core
     instanceType: c5.2xlarge
-    desiredCapacity: 2
+    desiredCapacity: 1
     # minSize: 1
     # maxSize: 2
     volumeSize: 10
@@ -19,7 +19,7 @@ nodeGroups:
     ssh:
       allow: true
   - name: ng-scalar
-    instanceType: c5.4xlarge
+    instanceType: c5.2xlarge
     desiredCapacity: 1
     # minSize: 1
     # maxSize: 2
@@ -30,7 +30,7 @@ nodeGroups:
     ssh:
       allow: true
   - name: ng-grid
-    instanceType: c5.4xlarge
+    instanceType: c5.2xlarge
     desiredCapacity: 1
     # minSize: 1
     # maxSize: 2
