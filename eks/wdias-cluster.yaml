@@ -12,7 +12,7 @@ nodeGroups:
     desiredCapacity: 1
     # minSize: 1
     # maxSize: 2
-    volumeSize: 10
+    volumeSize: 20
     volumeType: gp2
     labels:
       module: core

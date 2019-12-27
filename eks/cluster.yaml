@@ -10,7 +10,7 @@ nodeGroups:
   - name: ng-common
     instanceType: c5.large
     desiredCapacity: 1
-    volumeSize: 5
+    volumeSize: 20
     volumeType: gp2
     labels:
       module: common
