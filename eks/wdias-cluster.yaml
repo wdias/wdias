@@ -18,13 +18,13 @@ nodeGroups:
       module: core
     ssh:
       allow: true
-  - name: ng-extension
-    instanceType: c5.xlarge
-    desiredCapacity: 1
-    labels:
-      module: extension
-    ssh:
-      allow: true
+  # - name: ng-extension
+  #   instanceType: c5.xlarge
+  #   desiredCapacity: 1
+  #   labels:
+  #     module: extension
+  #   ssh:
+  #     allow: true
   - name: ng-test
     instanceType: c5.2xlarge
     desiredCapacity: 1
