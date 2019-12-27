@@ -21,8 +21,6 @@ nodeGroups:
   #   desiredCapacity: 1
   #   labels:
   #     module: extension
-  #   ssh:
-  #     allow: true
   - name: ng-test
     instanceType: c5n.xlarge
     # instanceType: c5.2xlarge
@@ -31,5 +29,3 @@ nodeGroups:
     # volumeType: gp2
     labels:
       module: test
-    ssh:
-      allow: true

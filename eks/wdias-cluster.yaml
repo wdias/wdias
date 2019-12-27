@@ -16,8 +16,6 @@ nodeGroups:
     volumeType: gp2
     labels:
       module: scalar
-    ssh:
-      allow: true
   - name: ng-grid
     instanceType: c5.2xlarge
     desiredCapacity: 1
@@ -27,5 +25,3 @@ nodeGroups:
     volumeType: gp2
     labels:
       module: grid
-    ssh:
-      allow: true
