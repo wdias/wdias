@@ -71,9 +71,9 @@ See more details on [Managing nodegroups](https://eksctl.io/usage/managing-nodeg
 
 Details on [Amazon Instance Types](https://aws.amazon.com/ec2/instance-types/)
 
-More nodegroups:
-- `eksctl create cluster -f eks/simple-cluster.yaml`
-- `eksctl create cluster -f eks/spot-cluster.yaml`
+Summary nodegroups:
+- `eksctl create cluster -f eks/cluster.yaml`
+- `eksctl delete cluster --wait -f eks/cluster.yaml`
 
 ### Managing nodegroups helpers
 - Listing nodegroups
@@ -87,12 +87,12 @@ eksctl scale nodegroup --cluster=wdias-cluster -r us-east-2  --nodes=<desiredCou
 ```
 - Add new nodegroup
 ```
-eksctl create nodegroup -f eks/wdias-cluster.yaml --include='ng-test*' --exclude='ng-grid*'
+eksctl create nodegroup -f eks/wdias-cluster.yaml --include='ng-test' --exclude='ng-extension'
 ```
 - Delete nodegrups
 ```
 eksctl delete nodegroup --cluster=wdias-cluster -r us-east-2 --name=ng-grid
-eksctl delete nodegroup -f eks/wdias-cluster.yaml --include='ng-grid,ng-test' --approve
+eksctl delete nodegroup -f eks/wdias-cluster.yaml --include='ng-core,ng-scalar,ng-grid,ng-test' --approve
 ```
 - Update nodegroup labels
 ```
