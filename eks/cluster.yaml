@@ -8,9 +8,9 @@ metadata:
 
 nodeGroups:
   - name: ng-core
-    instanceType: c5.2xlarge
+    instanceType: c5.4xlarge
     desiredCapacity: 1
-    volumeSize: 20
+    volumeSize: 21
     volumeType: gp2
     labels:
       module: core

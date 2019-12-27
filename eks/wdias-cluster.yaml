@@ -15,6 +15,7 @@ nodeGroups:
   #   ssh:
   #     allow: true
   - name: ng-test
+    # instanceType: c5n.xlarge
     instanceType: c5.2xlarge
     desiredCapacity: 1
     volumeSize: 5
