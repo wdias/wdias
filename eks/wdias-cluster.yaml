@@ -42,7 +42,7 @@ nodeGroups:
       allow: true
   - name: ng-test
     instanceType: c5.2xlarge
-    desiredCapacity: 2
+    desiredCapacity: 1
     # minSize: 1
     # maxSize: 2
     volumeSize: 5
