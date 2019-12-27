@@ -7,20 +7,25 @@ metadata:
   region: us-east-2
 
 nodeGroups:
-  # - name: ng-extension
-  #   instanceType: c5.xlarge
-  #   desiredCapacity: 1
-  #   labels:
-  #     module: extension
-  #   ssh:
-  #     allow: true
-  - name: ng-test
-    instanceType: c5n.xlarge
-    # instanceType: c5.2xlarge
+  - name: ng-scalar
+    instanceType: c5.2xlarge
     desiredCapacity: 1
-    volumeSize: 5
-    # volumeType: gp2
+    # minSize: 1
+    # maxSize: 2
+    volumeSize: 20
+    volumeType: gp2
     labels:
-      module: test
+      module: scalar
+    ssh:
+      allow: true
+  - name: ng-grid
+    instanceType: c5.2xlarge
+    desiredCapacity: 1
+    # minSize: 1
+    # maxSize: 2
+    volumeSize: 50
+    volumeType: gp2
+    labels:
+      module: grid
     ssh:
       allow: true

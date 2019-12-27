@@ -16,3 +16,20 @@ nodeGroups:
       module: core
     ssh:
       allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
+  # - name: ng-extension
+  #   instanceType: c5.xlarge
+  #   desiredCapacity: 1
+  #   labels:
+  #     module: extension
+  #   ssh:
+  #     allow: true
+  - name: ng-test
+    instanceType: c5n.xlarge
+    # instanceType: c5.2xlarge
+    desiredCapacity: 1
+    volumeSize: 5
+    # volumeType: gp2
+    labels:
+      module: test
+    ssh:
+      allow: true
