@@ -1,0 +1,40 @@
+# !/bin/bash
+set -e
+
+test_server() {
+  if [ -z ${1+x} ]; then
+    echo "Create tiller"
+    kubectl create namespace tiller
+  fi
+  export TILLER_NAMESPACE=tiller
+  tiller -listen=localhost:44134 -storage=secret -logtostderr
+}
+
+test_client() {
+  export HELM_HOST=:44134
+  helm init --client-only
+  helm repo update
+}
+
+test_node_pods() {
+  node_label=${1:-common}
+  for n in $(kubectl get nodes -l module=$node_label --no-headers | cut -d " " -f1); do
+    kubectl get pods --all-namespaces  --no-headers --field-selector spec.nodeName=${n}
+  done
+}
+
+test_cmd=$1
+case $test_cmd in
+  "" | "-h" | "--help")
+    test_help
+    ;;
+  *)
+    shift
+    test_${test_cmd} $@
+    if [ $? = 127 ]; then
+      echo "'${test_cmd}' command not found." >&2
+      echo "List available commands with '$progName --help'" >&2
+      exit 1
+    fi
+    ;;
+esac
