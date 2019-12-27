@@ -72,8 +72,12 @@ See more details on [Managing nodegroups](https://eksctl.io/usage/managing-nodeg
 Details on [Amazon Instance Types](https://aws.amazon.com/ec2/instance-types/)
 
 Summary nodegroups:
-- `eksctl create cluster -f eks/cluster.yaml`
-- `eksctl delete cluster --wait -f eks/cluster.yaml`
+```
+eksctl create cluster -f eks/cluster.yaml
+eksctl create nodegroup -f eks/wdias-cluster.yaml
+eksctl create nodegroup -f eks/wdias-cluster-data.yaml
+eksctl delete cluster --wait -f eks/cluster.yaml
+```
 
 ### Managing nodegroups helpers
 - Listing nodegroups
@@ -137,7 +141,7 @@ For the following steps, you need a terminal window for the `tiller server` and 
 **Summary**:
 - On server terminal
 ```sh
-kubectl create namespace tiller && \
+kubectl create namespace tiller
 export TILLER_NAMESPACE=tiller && \
 tiller -listen=localhost:44134 -storage=secret -logtostderr
 ```
