@@ -7,12 +7,12 @@ metadata:
   region: us-east-2
 
 nodeGroups:
-  - name: ng-common
-    instanceType: c5.large
+  - name: ng-core
+    instanceType: c5.2xlarge
     desiredCapacity: 1
     volumeSize: 20
     volumeType: gp2
     labels:
-      module: common
+      module: core
     ssh:
       allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
