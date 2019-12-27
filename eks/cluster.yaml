@@ -4,7 +4,7 @@ kind: ClusterConfig
 
 metadata:
   name: wdias-cluster
-  region: us-east-2b
+  region: us-east-2
 
 nodeGroups:
   - name: ng-common
