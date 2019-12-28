@@ -26,6 +26,19 @@ nodeGroups:
     # instanceType: c5.2xlarge
     desiredCapacity: 1
     volumeSize: 5
-    # volumeType: gp2
     labels:
       module: test
+  - name: ng-scalar
+    instanceType: c5.2xlarge
+    desiredCapacity: 1
+    volumeSize: 20
+    volumeType: gp2
+    labels:
+      module: scalar
+  - name: ng-grid
+    instanceType: c5.2xlarge
+    desiredCapacity: 1
+    volumeSize: 50
+    volumeType: gp2
+    labels:
+      module: grid

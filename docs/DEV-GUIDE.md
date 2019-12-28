@@ -50,11 +50,11 @@ bash ./scripts/helpers.sh resource_limit ~/wdias/wdias-helm-charts 1
 bash ./scripts/helpers.sh resource_limit ~/wdias/wdias-helm-charts 1 values
 ```
 - Remove all the databases
-`<./groups/databases.txt | xargs  -n1  -I {} helm del --purge {}`
+`<./groups/databases.txt | xargs  -n1  -I {} helm uninstall {}`
 - Remove all the Helm Charts
-`find ./groups -name '*.txt' | xargs -o -I {} cat {} | xargs  -n1 -o -I {} helm del --purge {}`
+`find ./groups -name '*.txt' | xargs -o -I {} cat {} | xargs  -n1 -o -I {} helm uninstall {}`
 - Remove all the Helm Charts exept Databases
-`cat docs/repos.txt | xargs  -n1  -I {} helm del --purge {}`
+`cat docs/repos.txt | xargs  -n1  -I {} helm uninstall {}`
 - Change the domain
 `egrep -lir 'wdias.com' . | grep '.yaml' | xargs -o -I {} sed -i '' 's/wdias.com/mydomain.com/g' {}` # Ubuntu: without ''
 - Enable or Disable resources limits defined
