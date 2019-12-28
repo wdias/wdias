@@ -4,7 +4,7 @@ set -e
 pub_helm_delete() {
   APPDIR=${1%/}
   APP=$(basename ${APPDIR})
-  helm delete $APP --purge
+  helm uninstall $APP
 }
 
 pub_build() {
@@ -19,7 +19,7 @@ pub_helm_install() {
   APP=$(basename ${APPDIR})
   # eval $(minikube docker-env)
   echo $APP
-  helm install -n ${APP} $(set_dev) ${APPDIR}
+  helm install ${APP} ${APPDIR} $(set_dev)
 }
 
 set_dev() {

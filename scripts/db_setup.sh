@@ -23,8 +23,8 @@ install_db() {
         APP_PATH="$ROOT_DIR/wdias-helm-charts/$1"
         cd $APP_PATH
         echo "Install Database Helm for $(basename ${PWD}) >>>"
-        echo "helm install --name $1 -f values.yaml stable/$2"
-        helm install --name $1 -f values.yaml stable/$2
+        echo "helm install $1 stable/$2 -f values.yaml"
+        helm install $1 stable/$2 -f values.yaml
         sleep $SLEEP_TIME
     else
         echo "$1 already exists. Run 'helm delete --purge $1' to delete."
