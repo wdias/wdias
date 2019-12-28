@@ -103,6 +103,10 @@ eksctl delete nodegroup -f eks/wdias-cluster.yaml --include='ng-core,ng-scalar,n
 kubectl label nodes -l alpha.eksctl.io/nodegroup-name=ng-1 new-label=foo
 (-) eksctl set labels --cluster managed-cluster --nodegroup managed-ng-1 --labels kubernetes.io/managed-by=eks,kubernetes.io/role=worker # https://eksctl.io/usage/eks-managed-nodegroups/#managing-labels
 ```
+- if encounter any issues, check CloudFormation console or try
+```
+eksctl utils describe-stacks --region=us-east-2 --name=wdias-cluster
+```
 - Node volume types: gp2, io1
   - Types: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html
   - Pricing: https://aws.amazon.com/ebs/pricing/
