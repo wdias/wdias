@@ -3,7 +3,7 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: nextgen-cluster
+  name: nextgen
   region: us-east-2
 
 nodeGroups:
