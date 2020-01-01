@@ -2,9 +2,12 @@
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
+# us-east-1 US East (N. Virginia)
+# us-east-2 US East (Ohio)
+# us-west-2 US West (Oregon) - All 3 have same prices
 metadata:
   name: nextgen
-  region: us-east-2
+  region: us-west-2
 
 nodeGroups:
   - name: ng-core
