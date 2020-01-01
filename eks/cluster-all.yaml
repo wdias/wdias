@@ -10,7 +10,7 @@ nodeGroups:
   - name: ng-core
     instanceType: c5.4xlarge
     desiredCapacity: 1
-    volumeSize: 25
+    volumeSize: 20
     volumeType: gp2
     labels:
       module: core
@@ -31,14 +31,19 @@ nodeGroups:
   - name: ng-scalar
     instanceType: c5.2xlarge
     desiredCapacity: 1
-    volumeSize: 20
+    volumeSize: 15
     volumeType: gp2
     labels:
       module: scalar
   - name: ng-grid
     instanceType: c5.2xlarge
     desiredCapacity: 1
-    volumeSize: 50
+    volumeSize: 25
     volumeType: gp2
     labels:
       module: grid
+  - name: ng-common
+    instanceType: t3.micro
+    desiredCapacity: 1
+    labels:
+      module: common

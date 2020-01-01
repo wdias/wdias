@@ -74,6 +74,7 @@ Details on [Amazon Instance Types](https://aws.amazon.com/ec2/instance-types/)
 Summary nodegroups:
 ```
 eksctl create cluster -f eks/cluster.yaml
+nohup eksctl create cluster --timeout 0.75h -f eks/cluster-all.yaml -v 4 > logs.out 2>&1 &
 eksctl create nodegroup -f eks/wdias-cluster.yaml
 eksctl create nodegroup -f eks/wdias-cluster-data.yaml
 eksctl delete cluster --wait -f eks/cluster.yaml
