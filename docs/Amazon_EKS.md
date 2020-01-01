@@ -146,9 +146,9 @@ For the following steps, you need a terminal window for the `tiller server` and 
 **Summary**:
 - On server terminal
 ```sh
-kubectl create namespace tiller
+nohup kubectl create namespace tiller
 export TILLER_NAMESPACE=tiller && \
-tiller -listen=localhost:44134 -storage=secret -logtostderr
+tiller -listen=localhost:44134 -storage=secret -logtostderr > tiller_logs.out &
 ```
 - on client terminal
 ```sh
