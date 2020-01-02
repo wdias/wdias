@@ -32,7 +32,7 @@ nodeGroups:
     labels:
       module: test
   - name: ng-scalar
-    instanceType: c5.2xlarge
+    instanceType: c4.2xlarge
     desiredCapacity: 1
     volumeSize: 15
     volumeType: gp2
