@@ -83,16 +83,20 @@ eksctl delete cluster --wait -f eks/cluster.yaml
 ### Managing nodegroups helpers
 - Listing nodegroups
 ```bash
-eksctl get nodegroup --cluster=wdias-cluster -r us-east-2
-eksctl get nodegroup --cluster=wdias-cluster -r us-east-2 --name=ng-core
+eksctl get nodegroup --cluster=nextgen -r us-east-2
+eksctl get nodegroup --cluster=nextgen -r us-east-2 --name=ng-core
 ```
 - Scaling nodegroup
 ```bash
-eksctl scale nodegroup --cluster=wdias-cluster -r us-east-2  --nodes=<desiredCount> --name=ng-core
+eksctl scale nodegroup --cluster=nextgen -r us-east-2  --nodes=<desiredCount> --name=ng-core
 ```
 - Add new nodegroup
 ```
 eksctl create nodegroup -f eks/wdias-cluster.yaml --include='ng-test' --exclude='ng-extension'
+eksctl create nodegroup --cluster=nextgen --name=ng-scalar
+eksctl create nodegroup --cluster=nextgen -r us-east-2 -n ng-grid -t c5n.2xlarge -N 1 --node-volume-size=25 --node-volume-type=gp2 --node-labels="module=grid" -v 4 &&
+eksctl create nodegroup --cluster=nextgen -r us-east-2 -n ng-scalar -t c5.2xlarge -N 1 --node-volume-size=15 --node-volume-type=gp2 --node-labels="module=scalar" -v 4 &&
+eksctl create nodegroup --cluster=nextgen -r us-east-2 -n ng-test -t c5n.xlarge -N 1 --node-volume-size=5 --node-volume-type=gp2 --node-labels="module=test" -v 4
 ```
 - Delete nodegrups
 ```
@@ -106,7 +110,7 @@ kubectl label nodes -l alpha.eksctl.io/nodegroup-name=ng-1 new-label=foo
 ```
 - if encounter any issues, check CloudFormation console or try
 ```
-eksctl utils describe-stacks --region=us-east-2 --name=wdias-cluster
+eksctl utils describe-stacks --region=us-east-2 --name=nextgen
 ```
 - Node volume types: gp2, io1
   - Types: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html
