@@ -2,6 +2,9 @@
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
+# us-east-1 US East (N. Virginia)
+# us-east-2 US East (Ohio)
+# us-west-2 US West (Oregon) - All 3 have same prices
 metadata:
   name: nextgen
   region: us-east-2
@@ -21,11 +24,3 @@ nodeGroups:
   #   desiredCapacity: 1
   #   labels:
   #     module: extension
-  - name: ng-test
-    instanceType: c5n.xlarge
-    # instanceType: c5.2xlarge
-    desiredCapacity: 1
-    volumeSize: 5
-    # volumeType: gp2
-    labels:
-      module: test
