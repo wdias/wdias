@@ -29,10 +29,10 @@ nodeGroups:
     volumeType: gp2
     labels:
       module: grid
-  - name: ng-common
+  - name: ng-zomato
     instanceType: c5.2xlarge
     desiredCapacity: 1
-    volumeSize: 24
+    volumeSize: 26
     volumeType: gp2
     labels:
-      module: common
+      module: zomato
