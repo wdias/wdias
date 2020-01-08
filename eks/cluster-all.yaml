@@ -32,14 +32,15 @@ nodeGroups:
     labels:
       module: test
   - name: ng-scalar
-    instanceType: c5.2xlarge
+    instanceType: c5.xlarge
+    # instanceType: c5.4xlarge
     desiredCapacity: 1
     volumeSize: 15
     volumeType: gp2
     labels:
       module: scalar
   - name: ng-grid
-    instanceType: c5.2xlarge
+    instanceType: c5n.4xlarge
     desiredCapacity: 1
     volumeSize: 25
     volumeType: gp2
