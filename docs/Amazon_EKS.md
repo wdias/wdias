@@ -147,17 +147,17 @@ For the following steps, you need a terminal window for the `tiller server` and 
 7. Run Helm chart commands.
 8. When you're finished, close your helm client and tiller server terminal windows. Repeat this procedure when you want to use helm with your cluster.
 
-**Summary**:
+**Summary**: (Only with Helm 2. Helm 3 is auto init the tiller.)
 - On server terminal
 ```sh
-nohup kubectl create namespace tiller
+kubectl create namespace tiller && \
 export TILLER_NAMESPACE=tiller && \
-tiller -listen=localhost:44134 -storage=secret -logtostderr > tiller_logs.out &
+nohup tiller -listen=localhost:44134 -storage=secret -logtostderr > tiller_logs.out 2>&1 &
 ```
 - on client terminal
 ```sh
 export HELM_HOST=:44134 && \
-helm init --client-only && \
+helm init && \
 helm repo update
 ```
 
