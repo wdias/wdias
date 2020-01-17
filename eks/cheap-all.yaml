@@ -13,7 +13,7 @@ nodeGroups:
   - name: cng-core
     instanceType: t3.medium
     desiredCapacity: 1
-    volumeSize: 5
+    volumeSize: 4
     volumeType: gp2
     labels:
       module: core
@@ -28,21 +28,21 @@ nodeGroups:
     instanceType: t3.medium
     # instanceType: c5.2xlarge
     desiredCapacity: 1
-    volumeSize: 2
+    volumeSize: 4
     labels:
       module: test
   - name: cng-scalar
     instanceType: t3.medium
     # instanceType: c5.4xlarge
     desiredCapacity: 1
-    volumeSize: 3
+    volumeSize: 4
     volumeType: gp2
     labels:
       module: scalar
   - name: cng-grid
     instanceType: t3.medium
     desiredCapacity: 1
-    volumeSize: 1
+    volumeSize: 4
     volumeType: gp2
     labels:
       module: grid
