@@ -18,7 +18,8 @@ pub_helm_install() {
   APPDIR=${1%/}
   APP=$(basename ${APPDIR})
   # eval $(minikube docker-env)
-  echo $APP
+  echo "Installing $APP ..."
+  echo helm install ${APP} ${APPDIR} $(set_dev)
   helm install ${APP} ${APPDIR} $(set_dev)
 }
 
