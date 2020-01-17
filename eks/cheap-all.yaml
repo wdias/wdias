@@ -6,14 +6,14 @@ kind: ClusterConfig
 # us-east-2 US East (Ohio)
 # us-west-2 US West (Oregon) - All 3 have same prices
 metadata:
-  name: cheapgen
+  name: nextgen
   region: us-east-2
 
 nodeGroups:
   - name: cng-core
     instanceType: t3.medium
     desiredCapacity: 1
-    volumeSize: 5
+    volumeSize: 4
     volumeType: gp2
     labels:
       module: core
@@ -27,20 +27,20 @@ nodeGroups:
   - name: cng-test
     instanceType: t3.medium
     desiredCapacity: 1
-    volumeSize: 5
+    volumeSize: 4
     labels:
       module: test
   - name: cng-scalar
     instanceType: t3.medium
     desiredCapacity: 1
-    volumeSize: 5
+    volumeSize: 4
     volumeType: gp2
     labels:
       module: scalar
   - name: cng-grid
     instanceType: t3.medium
     desiredCapacity: 1
-    volumeSize: 5
+    volumeSize: 4
     volumeType: gp2
     labels:
       module: grid
