@@ -160,7 +160,10 @@ export HELM_HOST=:44134 && \
 helm init && \
 helm repo update
 ```
-
+```
+# Ref: https://stackoverflow.com/a/51122584
+kubectl --kubeconfig .kube/config  get nodes
+```
 
 Direct install tiller on the cluster.
 ```
