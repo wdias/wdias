@@ -87,4 +87,5 @@ cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install
 bash ~/wdias/wdias/scripts/helm_install.sh ~/wdias
 wdias helm_install ~/wdias/wdias-performance-test/helm/wdias-performance-test
 helm install metrics-server --namespace=kube-system stable/metrics-server -f ~/wdias/wdias-helm-charts/metrics-server/values.yaml
+wdias helm_install ~/wdias/wdias-data-collector/helm/wdias-data-collector
 ```

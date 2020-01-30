@@ -27,7 +27,7 @@ install_db() {
         helm install $1 stable/$2 -f values.yaml
         sleep $SLEEP_TIME
     else
-        echo "$1 already exists. Run 'helm delete --purge $1' to delete."
+        echo "$1 already exists. Run 'helm uninstall $1' to delete."
     fi
 }
 
@@ -51,10 +51,12 @@ install_db adapter-redis redis
 # cd ~/wdias/wdias-helm-charts/adapter-redis && helm install --name adapter-redis -f values.yaml stable/redis
 install_db adapter-query-mongodb mongodb
 # cd ~/wdias/wdias-helm-charts/adapter-query-mongodb && helm install --name adapter-query-mongodb -f values.yaml stable/mongodb
-install_db adapter-scalar-influxdb influxdb
+# install_db adapter-scalar-influxdb influxdb
+$CMD helm_install "$ROOT_DIR/wdias-helm-charts/adapter-scalar-influxdb"
 # cd ~/wdias/wdias-helm-charts/adapter-scalar-influxdb && helm install --name adapter-scalar-influxdb -f values.yaml stable/influxdb
 # kubectl exec -i -t --namespace default $(kubectl get pods --namespace default -l app=adapter-scalar-influxdb -o jsonpath='{.items[0].metadata.name}') /bin/sh
-install_db adapter-vector-influxdb influxdb
+# install_db adapter-vector-influxdb influxdb
+$CMD helm_install "$ROOT_DIR/wdias-helm-charts/adapter-vector-influxdb"
 # cd ~/wdias/wdias-helm-charts/adapter-vector-influxdb && helm install --name adapter-vector-influxdb -f values.yaml stable/influxdb
 # kubectl exec -i -t --namespace default $(kubectl get pods --namespace default -l app=adapter-vector-influxdb -o jsonpath='{.items[0].metadata.name}') /bin/sh
 
