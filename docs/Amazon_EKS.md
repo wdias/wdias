@@ -100,7 +100,7 @@ eksctl create nodegroup --cluster=nextgen -r us-east-2 -n ng-test -t c5n.xlarge 
 ```
 - Delete nodegrups
 ```
-eksctl delete nodegroup --cluster=wdias-cluster -r us-east-2 --name=ng-grid
+eksctl delete nodegroup --cluster=nextgen -r us-east-2 --name=ng-grid
 eksctl delete nodegroup -f eks/wdias-cluster.yaml --include='ng-core,ng-scalar,ng-grid,ng-test' --approve
 ```
 - Update nodegroup labels
