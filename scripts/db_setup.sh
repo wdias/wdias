@@ -52,10 +52,12 @@ install_db adapter-redis redis
 install_db adapter-query-mongodb mongodb
 # cd ~/wdias/wdias-helm-charts/adapter-query-mongodb && helm install --name adapter-query-mongodb -f values.yaml stable/mongodb
 # install_db adapter-scalar-influxdb influxdb
+$CMD helm_delete "$ROOT_DIR/wdias-helm-charts/adapter-scalar-influxdb"
 $CMD helm_install "$ROOT_DIR/wdias-helm-charts/adapter-scalar-influxdb"
 # cd ~/wdias/wdias-helm-charts/adapter-scalar-influxdb && helm install --name adapter-scalar-influxdb -f values.yaml stable/influxdb
 # kubectl exec -i -t --namespace default $(kubectl get pods --namespace default -l app=adapter-scalar-influxdb -o jsonpath='{.items[0].metadata.name}') /bin/sh
 # install_db adapter-vector-influxdb influxdb
+$CMD helm_delete "$ROOT_DIR/wdias-helm-charts/adapter-vector-influxdb"
 $CMD helm_install "$ROOT_DIR/wdias-helm-charts/adapter-vector-influxdb"
 # cd ~/wdias/wdias-helm-charts/adapter-vector-influxdb && helm install --name adapter-vector-influxdb -f values.yaml stable/influxdb
 # kubectl exec -i -t --namespace default $(kubectl get pods --namespace default -l app=adapter-vector-influxdb -o jsonpath='{.items[0].metadata.name}') /bin/sh

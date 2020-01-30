@@ -28,7 +28,7 @@ nodeGroups:
     instanceType: c5n.xlarge
     # instanceType: c5.2xlarge
     desiredCapacity: 1
-    volumeSize: 5
+    volumeSize: 10
     labels:
       module: test
   - name: ng-scalar
