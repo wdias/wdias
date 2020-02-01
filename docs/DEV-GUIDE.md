@@ -82,8 +82,8 @@ helm install metrics-server --namespace=kube-system stable/metrics-server -f ~/w
 ## Setup Prod
 ```sh
 bash ~/wdias/wdias/scripts/db_setup.sh ~/wdias && sleep 10 && \
-cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-metadata-mysql metadata wdias && \
-cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-extension-mysql extension wdias && \
+cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-metadata-mysql metadata wdias wdias123 && \
+cd ~/wdias/wdias-mysql-schema && bash ~/wdias/wdias-mysql-schema/scripts/install_database.sh adapter-extension-mysql extension wdias wdias123 && \
 bash ~/wdias/wdias/scripts/helm_install.sh ~/wdias
 wdias helm_install ~/wdias/wdias-performance-test/helm/wdias-performance-test
 helm install metrics-server --namespace=kube-system stable/metrics-server -f ~/wdias/wdias-helm-charts/metrics-server/values.yaml
