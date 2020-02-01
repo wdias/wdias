@@ -1,5 +1,8 @@
+alias k='kubectl '
 alias kgp='kubectl get pods'
-alias ktp='kubectl top pods'
+alias kt='kubectl top pods'
+alias ktn='kubectl top nodes'
+alias ktc='kubectl top pods --containers '
 alias kgn='kubectl get nodes'
 alias kdn='kubectl describe node '
 
